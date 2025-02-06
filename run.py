@@ -19,14 +19,27 @@ def get_habit_data():
     """
     Get habit data for the user.
     """
-    print("Please Enter an option below")
-    print("1. Enter a new habit")
-    print("2. View all habits")
-    print("4. Add a habit")
-    print("5. Delete a habit")
-    print("6. Exit\n")
-    data_str = input("Enter your Choice here: ")
-    print(f"The data provided is {data_str}")
-
+    while True:
+        print("Please Enter an option below")
+        print("1. Enter a new habit")
+        print("2. View all habits")
+        print("3. Add a habit")
+        print("4. Delete a habit")
+        print("5. Exit\n")
+        data_str = input("Enter your choice here: ")
+        
+        if data_str == "1":
+            enter_new_habit()
+        elif data_str == "2":
+            view_all_habits()
+        elif data_str == "3":
+            add_habit()
+        elif data_str == "4":
+            delete_habit()
+        elif data_str == "5":
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
 
 get_habit_data()
