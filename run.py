@@ -45,7 +45,7 @@ def get_habit_data():
 
 def enter_new_habit():
     new_habit = input("Enter the name of your new habit: ")
-    SHEET.append_row([new_habit])
+    habits.append_row([new_habit])
     print(f"Habit '{new_habit}' added successfully!")
 
-    get_habit_data()
+get_habit_data()
