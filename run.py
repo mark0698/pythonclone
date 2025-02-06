@@ -15,8 +15,4 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Python Project')
 
-sales = SHEET.worksheet('habits')
 
-data = sales.get_all_values()
-
-print(data)
