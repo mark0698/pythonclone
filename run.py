@@ -63,7 +63,7 @@ def delete_habit():
     habit_found = False
     for i, habit in enumerate(all_habits):
         if habit[0] == habit_name:
-            habits.delete_row(i + 1)  # Rows are 1-indexed
+            habits.delete_rows(i + 1)  
             print(f"Habit '{habit_name}' deleted successfully!")
             habit_found = True
             break
