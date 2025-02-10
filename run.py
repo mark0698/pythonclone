@@ -3,8 +3,7 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 import gspread
 from google.oauth2.service_account import Credentials   
-from colorama import init
-init()
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -43,7 +42,7 @@ def get_habit_data():
             print("Exiting the program.")
             break
         else:
-            print("Invalid choice. Please try again.")
+            print( "Invalid choice. Please try again.")
 
 
 def enter_new_habit():
