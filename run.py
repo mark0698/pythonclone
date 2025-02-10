@@ -48,4 +48,13 @@ def enter_new_habit():
     habits.append_row([new_habit])
     print(f"Habit '{new_habit}' added successfully!")
 
+def view_all_habits():
+    all_habits = habits.get_all_values()
+    if all_habits:
+        print("Your habits:")
+        for habit in all_habits:
+            print(habit[0])
+    else:
+        print("You have no habits recorded.")
+
 get_habit_data()
