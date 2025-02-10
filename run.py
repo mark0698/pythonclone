@@ -2,7 +2,8 @@
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 import gspread
-from google.oauth2.service_account import Credentials   
+from google.oauth2.service_account import Credentials 
+
 
 
 SCOPE = [
@@ -25,9 +26,8 @@ def get_habit_data():
         print("Please Enter an option below")
         print("1. Enter a new habit")
         print("2. View all habits")
-        print("3. Add a habit")
-        print("4. Delete a habit")
-        print("5. Exit\n")
+        print("3. Delete a habit")
+        print("4. Exit\n")
         data_str = input("Enter your choice here: ")
         
         if data_str == "1":
@@ -35,14 +35,12 @@ def get_habit_data():
         elif data_str == "2":
             view_all_habits()
         elif data_str == "3":
-            add_habit()
-        elif data_str == "4":
             delete_habit()
-        elif data_str == "5":
+        elif data_str == "4":
             print("Exiting the program.")
             break
         else:
-            print( "Invalid choice. Please try again.")
+            print("Invalid choice. Please try again.")
 
 
 def enter_new_habit():
@@ -57,6 +55,6 @@ def view_all_habits():
         for habit in all_habits:
             print(habit[0])
     else:
-        print("You have no habits recorded.")
+        print(Fore.red + "You have no habits recorded.")
 
 get_habit_data()
