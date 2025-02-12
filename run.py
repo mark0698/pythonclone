@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials 
+from datetime import datetime 
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -89,5 +90,50 @@ def view_completion_percentages():
     
     if not habit_found:
         print(f"No completion data found for habit '{habit_name}'.")
+
+
+def view_habit_progress():
+    habit_name = input("Enter the name of the habit you want to check progress for: ")
+    habit_name_lower = habit_name.lower()  
+    start_dates_records = start_dates.get_all_values()
+    habit_found = False
+
+    for record in start_dates_records:
+        if record[0].lower() == habit_name_lower:  
+            start_date_str = record[1] 
+            habit_found = True
+            break
+
+    if not habit_found:
+        print(f"No start date found for habit '{habit_name}'.")
+        return
+
+
+    completion_records = completion_data.get_all_values()
+    success_percentage = None
+
+    for record in completion_records:
+        if record[0].lower() == habit_name_lower:  
+            success_percentage = record[1]  
+            break
+
+    if not success_percentage:
+        print(f"No completion data found for habit '{habit_name}'.")
+        return
+
+
+    try:
+        start_date = datetime.strptime(start_date_str, "%d/%m/%Y") 
+        current_date = datetime.now()  
+        days_since_start = (current_date - start_date).days 
+    except ValueError:
+        print(f"Invalid date format for habit '{habit_name}'. Expected format: DD/MM/YYYY.")
+        return
+
+    print(f"\nHabit: {habit_name}")
+    print(f"Start Date: {start_date.strftime('%d/%m/%Y')}")
+    print(f"Days since start: {days_since_start} days")
+    print(f"Success Percentage: {success_percentage}%\n")
+
 
 get_habit_data()
