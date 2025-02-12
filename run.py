@@ -24,8 +24,9 @@ def get_habit_data():
         print("1. Enter a new habit")
         print("2. View all habits")
         print("3. Delete a habit")
-        print("4. View completion percentages")
-        print("5. Exit\n")
+        print("4. View completion percentage for a habit")
+        print("5. View habit progress (start date and success percentage)")
+        print("6. Exit\n")
         data_str = input("Enter your choice here: ")
         
         if data_str == "1":
@@ -37,6 +38,8 @@ def get_habit_data():
         elif data_str == "4":
             view_completion_percentages()
         elif data_str == "5":
+            view_habit_progress()
+        elif data_str == "6":
             print("Exiting the program.")
             break
         else:
