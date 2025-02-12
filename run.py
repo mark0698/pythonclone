@@ -1,7 +1,9 @@
 import gspread
 from google.oauth2.service_account import Credentials 
 from datetime import datetime 
-from colorama import init
+from colorama import init, Fore, Style
+
+# Initialize colorama
 init()
 
 SCOPE = [
@@ -23,13 +25,13 @@ def get_habit_data():
     Get habit data for the user.
     """
     while True:
-        print("Please Enter an option below")
-        print("1. Enter a new habit")
-        print("2. View all habits")
-        print("3. Delete a habit")
-        print("4. View completion percentage for a habit")
-        print("5. View habit progress (start date and success percentage)")
-        print("6. Exit\n")
+        print(f"{Fore.GREEN}Please Enter an option below{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}1. Enter a new habit{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}2. View all habits{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}3. Delete a habit{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}4. View completion percentage for a habit{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}5. View habit progress (start date and success percentage){Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}6. Exit{Style.RESET_ALL}\n")
         data_str = input("Enter your choice here: ")
         
         if data_str == "1":
@@ -43,10 +45,10 @@ def get_habit_data():
         elif data_str == "5":
             view_habit_progress()
         elif data_str == "6":
-            print("Exiting the program.")
+            print(f"{Fore.GREEN}Exiting the program.{Style.RESET_ALL}")
             break
         else:
-            print("Invalid choice. Please try again.")
+            print(f"{Fore.RED}Invalid choice. Please try again.{Style.RESET_ALL}")
 
 def enter_new_habit():
     new_habit = input("Enter the name of your new habit: ")
@@ -57,23 +59,23 @@ def enter_new_habit():
     try:
         start_date = datetime.strptime(start_date_str, "%d/%m/%Y")  
     except ValueError:
-        print("Invalid date format. Please use DD/MM/YYYY.")
+        print(f"{Fore.RED}Invalid date format. Please use DD/MM/YYYY.{Style.RESET_ALL}")
         return  
     
     habits.append_row([new_habit_lower])
-    print(f"Habit '{new_habit}' added successfully!")
+    print(f"{Fore.GREEN}Habit '{new_habit}' added successfully!{Style.RESET_ALL}")
     
     start_dates.append_row([new_habit_lower, start_date.strftime('%d/%m/%Y')]) 
-    print(f"Start date '{start_date.strftime('%d/%m/%Y')}' for habit '{new_habit}' recorded successfully!")
+    print(f"{Fore.GREEN}Start date '{start_date.strftime('%d/%m/%Y')}' for habit '{new_habit}' recorded successfully!{Style.RESET_ALL}")
 
 def view_all_habits():
     all_habits = habits.get_all_values()
     if all_habits:
-        print("Your habits:")
+        print(f"{Fore.BLUE}Your habits:{Style.RESET_ALL}")
         for habit in all_habits:
-            print(habit[0])
+            print(f"{Fore.CYAN}{habit[0]}{Style.RESET_ALL}")
     else:
-        print("You have no habits recorded.")
+        print(f"{Fore.RED}You have no habits recorded.{Style.RESET_ALL}")
 
 def delete_habit():
     habit_name = input("Enter the name of the habit to delete: ")
@@ -83,12 +85,12 @@ def delete_habit():
     for i, habit in enumerate(all_habits):
         if habit[0].lower() == habit_name.lower():  # Case-insensitive comparison
             habits.delete_rows(i + 1)  # Rows are 1-indexed in gspread
-            print(f"Habit '{habit[0]}' deleted successfully!")
+            print(f"{Fore.GREEN}Habit '{habit[0]}' deleted successfully!{Style.RESET_ALL}")
             habit_found = True
             break
     
     if not habit_found:
-        print(f"Habit '{habit_name}' not found.")
+        print(f"{Fore.RED}Habit '{habit_name}' not found.{Style.RESET_ALL}")
 
 def view_completion_percentages():
     habit_name = input("Enter the name of the habit you want the completion percentage for: ")
@@ -98,13 +100,12 @@ def view_completion_percentages():
     for record in completion_records:
         if record[0].lower() == habit_name.lower():  # Case-insensitive comparison
             completion_percentage = record[1]
-            print(f"Completion percentage for '{record[0]}': {completion_percentage}%")
+            print(f"{Fore.MAGENTA}Completion percentage for '{record[0]}': {completion_percentage}%{Style.RESET_ALL}")
             habit_found = True
             break
     
     if not habit_found:
-        print(f"No completion data found for habit '{habit_name}'.")
-
+        print(f"{Fore.RED}No completion data found for habit '{habit_name}'.{Style.RESET_ALL}")
 
 def view_habit_progress():
     habit_name = input("Enter the name of the habit you want to check progress for: ")
@@ -119,7 +120,7 @@ def view_habit_progress():
             break
 
     if not habit_found:
-        print(f"No start date found for habit '{habit_name}'.")
+        print(f"{Fore.RED}No start date found for habit '{habit_name}'.{Style.RESET_ALL}")
         return
 
 
@@ -132,7 +133,7 @@ def view_habit_progress():
             break
 
     if not success_percentage:
-        print(f"No completion data found for habit '{habit_name}'.")
+        print(f"{Fore.RED}No completion data found for habit '{habit_name}'.{Style.RESET_ALL}")
         return
 
 
@@ -141,13 +142,13 @@ def view_habit_progress():
         current_date = datetime.now()  
         days_since_start = (current_date - start_date).days 
     except ValueError:
-        print(f"Invalid date format for habit '{habit_name}'. Expected format: DD/MM/YYYY.")
+        print(f"{Fore.RED}Invalid date format for habit '{habit_name}'. Expected format: DD/MM/YYYY.{Style.RESET_ALL}")
         return
 
-    print(f"\nHabit: {habit_name}")
-    print(f"Start Date: {start_date.strftime('%d/%m/%Y')}")
-    print(f"Days since start: {days_since_start} days")
-    print(f"Success Percentage: {success_percentage}%\n")
+    print(f"\n{Fore.CYAN}Habit: {habit_name}{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}Start Date: {start_date.strftime('%d/%m/%Y')}{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}Days since start: {days_since_start} days{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}Success Percentage: {success_percentage}%{Style.RESET_ALL}\n")
 
 
 get_habit_data()
