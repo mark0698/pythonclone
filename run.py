@@ -29,7 +29,6 @@ def get_habit_data():
         print("1. Enter a new habit")
         print("2. View all habits")
         print("3. Delete a habit")
-        print("4. Exit\n")
         print("4. View completion percentages")
         print("5. Exit\n")
         data_str = input("Enter your choice here: ")
@@ -61,8 +60,8 @@ def view_all_habits():
         for habit in all_habits:
             print(habit[0])
     else:
-        print(Fore.red + "You have no habits recorded.")
         print("You have no habits recorded.")
+
 
 def delete_habit():
     habit_name = input("Enter the name of the habit to delete: ")
