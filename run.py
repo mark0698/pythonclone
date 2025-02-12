@@ -12,7 +12,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Python Project')
 habits = SHEET.worksheet('habits')
-completion_data = SHEET.worksheet('percentage of completion')  # Access the second sheet
+completion_data = SHEET.worksheet('percentage of completion')  
+start_dates = SHEET.worksheet('start dates')
 
 def get_habit_data():
     """
