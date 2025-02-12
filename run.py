@@ -62,12 +62,14 @@ def delete_habit():
     habit_name = input("Enter the name of the habit to delete: ")
     all_habits = habits.get_all_values()
     habit_found = False
+    
     for i, habit in enumerate(all_habits):
-        if habit[0] == habit_name:
-            habits.delete_rows(i + 1)  
-            print(f"Habit '{habit_name}' deleted successfully!")
+        if habit[0].lower() == habit_name.lower():  # Case-insensitive comparison
+            habits.delete_rows(i + 1)  # Rows are 1-indexed in gspread
+            print(f"Habit '{habit[0]}' deleted successfully!")
             habit_found = True
             break
+    
     if not habit_found:
         print(f"Habit '{habit_name}' not found.")
 
