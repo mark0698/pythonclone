@@ -1,6 +1,8 @@
 import gspread
 from google.oauth2.service_account import Credentials 
 from datetime import datetime 
+from colorama import init
+init()
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -49,11 +51,9 @@ def get_habit_data():
 def enter_new_habit():
     new_habit = input("Enter the name of your new habit: ")
     new_habit_lower = new_habit.lower()
-    
-    
+     
     start_date_str = input("Enter the start date for your habit (DD/MM/YYYY): ")
     
-   
     try:
         start_date = datetime.strptime(start_date_str, "%d/%m/%Y")  
     except ValueError:
@@ -63,7 +63,7 @@ def enter_new_habit():
     habits.append_row([new_habit_lower])
     print(f"Habit '{new_habit}' added successfully!")
     
-    start_dates.append_row([new_habit_lower, start_date.strftime('%d/%m/%Y')])  # Store start date in correct format
+    start_dates.append_row([new_habit_lower, start_date.strftime('%d/%m/%Y')]) 
     print(f"Start date '{start_date.strftime('%d/%m/%Y')}' for habit '{new_habit}' recorded successfully!")
 
 def view_all_habits():
