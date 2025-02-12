@@ -46,7 +46,8 @@ def get_habit_data():
 
 def enter_new_habit():
     new_habit = input("Enter the name of your new habit: ")
-    habits.append_row([new_habit])
+    new_habit_lower = new_habit.lower()  # Convert the habit name to lowercase
+    habits.append_row([new_habit_lower])  # Store the habit in lowercase
     print(f"Habit '{new_habit}' added successfully!")
 
 def view_all_habits():
