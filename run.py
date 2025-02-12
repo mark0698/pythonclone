@@ -10,7 +10,8 @@ SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
-    ] 
+    ]
+]
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
@@ -29,6 +30,8 @@ def get_habit_data():
         print("2. View all habits")
         print("3. Delete a habit")
         print("4. Exit\n")
+        print("4. View completion percentages")
+        print("5. Exit\n")
         data_str = input("Enter your choice here: ")
         
         if data_str == "1":
@@ -38,6 +41,8 @@ def get_habit_data():
         elif data_str == "3":
             delete_habit()
         elif data_str == "4":
+            view_completion_percentages()
+        elif data_str == "5":
             print("Exiting the program.")
             break
         else:
@@ -57,6 +62,7 @@ def view_all_habits():
             print(habit[0])
     else:
         print(Fore.red + "You have no habits recorded.")
+        print("You have no habits recorded.")
 
 def delete_habit():
     habit_name = input("Enter the name of the habit to delete: ")
@@ -70,5 +76,16 @@ def delete_habit():
             break
     if not habit_found:
         print(f"Habit '{habit_name}' not found.")
+
+    def view_completion_percentages():
+    completion_records = completion_data.get_all_values()
+    if completion_records:
+        print("Completion percentages:")
+        for record in completion_records:
+            habit_name = record[0]
+            completion_percentage = record[1]
+            print(f"{habit_name}: {completion_percentage}%")
+    else:
+        print("No completion data available.")
 
 get_habit_data()
