@@ -1,3 +1,4 @@
+
 <h1>Habit Tracker</h1>
 
 <h2>Introduction</h2>
@@ -37,6 +38,104 @@
     <li><strong>View Completion Percentage</strong>: Users can see the completion percentage for a specific habit.</li>
     <li><strong>View Habit Progress</strong>: Users can view the start date and success percentage for a habit.</li>
     <li><strong>Exit the Program</strong>: Users can exit the application easily.</li>
+</ul>
+
+<h2>Structure</h2>
+
+<h3>Main Menu</h3>
+<p><strong>USER STORY</strong>: As a User, I want to easily find various options to manage my habits.</p>
+<p><strong>IMPLEMENTATION</strong>:</p>
+<ul>
+    <li>When the program starts, the main menu is displayed with the following options:</li>
+    <ul>
+        <li>Add a new habit</li>
+        <li>Add a successful day to a habit</li>
+        <li>Add an unsuccessful day to a habit</li>
+        <li>View all habits</li>
+        <li>Delete a habit</li>
+        <li>View completion percentage for a habit</li>
+        <li>View habit progress (start date and success percentage)</li>
+        <li>Exit</li>
+    </ul>
+    <li>The user must input a number corresponding to the desired option. If an invalid choice is made, the user is alerted, and the menu is presented again.</li>
+</ul>
+
+<h3>Add a New Habit</h3>
+<p><strong>USER STORY</strong>: As a User, I want to add a new habit so that I can start tracking it.</p>
+<p><strong>IMPLEMENTATION</strong>:</p>
+<ul>
+    <li>The user is prompted to enter the name of the new habit and its start date.</li>
+    <li>The habit name is checked to ensure it doesn’t already exist.</li>
+    <li>The start date is validated to ensure it’s in the correct format (DD/MM/YYYY).</li>
+    <li>The habit and its start date are saved to the Google Sheets database.</li>
+</ul>
+
+<h3>Track Successful/Unsuccessful Days</h3>
+<p><strong>USER STORY</strong>: As a User, I want to add a successful or unsuccessful day to a habit so that I can track my progress.</p>
+<p><strong>IMPLEMENTATION</strong>:</p>
+<ul>
+    <li>The user is prompted to enter the name of the habit they want to update.</li>
+    <li>The program checks if the habit exists in the database.</li>
+    <li>If the habit exists, the user can add a successful or unsuccessful day.</li>
+    <li>The program updates the habit’s success or failure count in the database.</li>
+</ul>
+
+<h3>View All Habits</h3>
+<p><strong>USER STORY</strong>: As a User, I want to view all my habits so that I can see what I’m tracking.</p>
+<p><strong>IMPLEMENTATION</strong>:</p>
+<ul>
+    <li>The program retrieves all habits from the database and displays them to the user.</li>
+    <li>If no habits are found, the user is notified.</li>
+</ul>
+
+<h3>Delete a Habit</h3>
+<p><strong>USER STORY</strong>: As a User, I want to delete a habit so that I can remove it from my tracker.</p>
+<p><strong>IMPLEMENTATION</strong>:</p>
+<ul>
+    <li>The user is prompted to enter the name of the habit they want to delete.</li>
+    <li>The program checks if the habit exists in the database.</li>
+    <li>If the habit exists, it is deleted from the database.</li>
+    <li>If the habit doesn’t exist, the user is notified.</li>
+</ul>
+
+<h3>View Completion Percentage</h3>
+<p><strong>USER STORY</strong>: As a User, I want to view the completion percentage of a habit so that I can measure my progress.</p>
+<p><strong>IMPLEMENTATION</strong>:</p>
+<ul>
+    <li>The user is prompted to enter the name of the habit they want to check.</li>
+    <li>The program retrieves the habit’s completion percentage from the database and displays it to the user.</li>
+    <li>If no data is found, the user is notified.</li>
+</ul>
+
+<h3>View Habit Progress</h3>
+<p><strong>USER STORY</strong>: As a User, I want to view the progress of a habit, including its start date and success percentage, so that I can evaluate my performance.</p>
+<p><strong>IMPLEMENTATION</strong>:</p>
+<ul>
+    <li>The user is prompted to enter the name of the habit they want to check.</li>
+    <li>The program retrieves the habit’s start date and success percentage from the database.</li>
+    <li>The program calculates the number of days since the habit’s start date.</li>
+    <li>The habit’s progress is displayed to the user, including the start date, days since start, and success percentage.</li>
+</ul>
+
+<h3>Exit the Program</h3>
+<p><strong>USER STORY</strong>: As a User, I want to exit the program easily when I’m done.</p>
+<p><strong>IMPLEMENTATION</strong>:</p>
+<ul>
+    <li>The user can select the "Exit" option from the main menu to close the program.</li>
+</ul>
+
+<h2>Error Handling</h2>
+<ul>
+    <li><strong>Invalid Input</strong>: The program handles invalid input by alerting the user and prompting them to try again.</li>
+    <li><strong>Date Validation</strong>: The program ensures that dates are entered in the correct format (DD/MM/YYYY).</li>
+    <li><strong>Habit Existence</strong>: The program checks if a habit exists before performing actions like updating or deleting.</li>
+</ul>
+
+<h2>Features Left to Implement</h2>
+<ul>
+    <li><strong>Habit Streaks</strong>: Track consecutive successful days for a habit.</li>
+    <li><strong>Reminders</strong>: Send reminders to users to log their habits.</li>
+    <li><strong>Graphical Progress</strong>: Display habit progress in a graphical format (e.g., bar charts).</li>
 </ul>
 
 <h2>Logical Flow</h2>
@@ -103,6 +202,9 @@
 
 <h2>Conclusion</h2>
 <p>This Habit Tracker is a simple yet powerful tool for individuals looking to build and maintain good habits. With its intuitive interface and robust features, users can easily track their progress and stay motivated to achieve their goals. Future enhancements, such as habit streaks and graphical progress tracking, will make the application even more useful.</p>
+
+</body>
+
 
 </body>
 </html>
