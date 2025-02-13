@@ -23,28 +23,31 @@ start_dates = SHEET.worksheet('start dates')
 def get_habit_data():
     while True:
         print(f"{Fore.GREEN}Please Enter an option below{Style.RESET_ALL}")
-        print(f"{Fore.YELLOW}1. Add a successful day to a habit{Style.RESET_ALL}")
-        print(f"{Fore.YELLOW}2. Add an unsuccessful day to a habit{Style.RESET_ALL}")
-        print(f"{Fore.YELLOW}3. View all habits{Style.RESET_ALL}")
-        print(f"{Fore.YELLOW}4. Delete a habit{Style.RESET_ALL}")
-        print(f"{Fore.YELLOW}5. View completion percentage for a habit{Style.RESET_ALL}")
-        print(f"{Fore.YELLOW}6. View habit progress (start date and success percentage){Style.RESET_ALL}")
-        print(f"{Fore.YELLOW}7. Exit{Style.RESET_ALL}\n")
+        print(f"{Fore.YELLOW}1. Add a new habit{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}2. Add a successful day to a habit{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}3. Add an unsuccessful day to a habit{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}4. View all habits{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}5. Delete a habit{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}6. View completion percentage for a habit{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}7. View habit progress (start date and success percentage){Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}8. Exit{Style.RESET_ALL}\n")
         data_str = input("Enter your choice here: ")
         
         if data_str == "1":
-            add_successful_day()
+            enter_new_habit()
         elif data_str == "2":
-            add_unsuccessful_day()
+            add_successful_day()
         elif data_str == "3":
-            view_all_habits()
+            add_unsuccessful_day()
         elif data_str == "4":
-            delete_habit()
+            view_all_habits()
         elif data_str == "5":
-            view_completion_percentages()
+            delete_habit()
         elif data_str == "6":
-            view_habit_progress()
+            view_completion_percentages()
         elif data_str == "7":
+            view_habit_progress()
+        elif data_str == "8":
             print(f"{Fore.GREEN}Exiting the program.{Style.RESET_ALL}")
             break
         else:
@@ -182,5 +185,5 @@ def add_unsuccessful_day():
             return
 
     print(f"{Fore.RED}Habit '{habit_name}' not found in completion data.{Style.RESET_ALL}")
-    
+
 get_habit_data()
