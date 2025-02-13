@@ -57,7 +57,14 @@ def get_habit_data():
 def enter_new_habit():
     new_habit = input("Enter the name of your new habit: ")
     new_habit_lower = new_habit.lower()
-     
+    
+    all_habits = habits.get_all_values()
+    existing_habits = [habit[0].lower() for habit in all_habits]
+    
+    if new_habit_lower in existing_habits:
+        print(f"{Fore.RED}Habit '{new_habit}' already exists.{Style.RESET_ALL}")
+        return
+    
     start_date_str = input("Enter the start date for your habit (DD/MM/YYYY): ")
     
     try:
@@ -71,7 +78,6 @@ def enter_new_habit():
     
     start_dates.append_row([new_habit_lower, start_date.strftime('%d/%m/%Y')]) 
     print(f"{Fore.GREEN}Start date '{start_date.strftime('%d/%m/%Y')}' for habit '{new_habit}' recorded successfully!{Style.RESET_ALL}")
-
 def view_all_habits():
     all_habits = habits.get_all_values()
     if all_habits:
