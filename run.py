@@ -151,5 +151,36 @@ def view_habit_progress():
     print(f"{Fore.CYAN}Days since start: {days_since_start} days{Style.RESET_ALL}")
     print(f"{Fore.CYAN}Success Percentage: {success_percentage}%{Style.RESET_ALL}\n")
 
+def add_successful_day():
+    habit_name = input("Enter the habit for which you want to add a successful day: ")
+    completion_records = completion_data.get_all_values()
+    
+    for i, record in enumerate(completion_records):
+        if record[0].lower() == habit_name.lower(): 
+            successful_days = int(record[2])  # Assuming C is column 3 (index 2)
+            unsuccessful_days = int(record[3])  # Assuming D is column 4 (index 3)
+            successful_days += 1  # Increment the successful days
+            
+            completion_data.update_cell(i + 1, 3, successful_days)  # Update success count
+            print(f"{Fore.GREEN}Added a successful day for '{habit_name}'. Total successful days: {successful_days}{Style.RESET_ALL}")
+            return
 
+    print(f"{Fore.RED}Habit '{habit_name}' not found in completion data.{Style.RESET_ALL}")
+
+def add_unsuccessful_day():
+    habit_name = input("Enter the habit for which you want to add an unsuccessful day: ")
+    completion_records = completion_data.get_all_values()
+    
+    for i, record in enumerate(completion_records):
+        if record[0].lower() == habit_name.lower(): 
+            successful_days = int(record[2])  # Assuming C is column 3 (index 2)
+            unsuccessful_days = int(record[3])  # Assuming D is column 4 (index 3)
+            unsuccessful_days += 1  # Increment the unsuccessful days
+            
+            completion_data.update_cell(i + 1, 4, unsuccessful_days)  # Update unsuccessful count
+            print(f"{Fore.GREEN}Added an unsuccessful day for '{habit_name}'. Total unsuccessful days: {unsuccessful_days}{Style.RESET_ALL}")
+            return
+
+    print(f"{Fore.RED}Habit '{habit_name}' not found in completion data.{Style.RESET_ALL}")
+    
 get_habit_data()
