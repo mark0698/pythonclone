@@ -78,6 +78,8 @@ def enter_new_habit():
     
     start_dates.append_row([new_habit_lower, start_date.strftime('%d/%m/%Y')]) 
     print(f"{Fore.GREEN}Start date '{start_date.strftime('%d/%m/%Y')}' for habit '{new_habit}' recorded successfully!{Style.RESET_ALL}")
+
+
 def view_all_habits():
     all_habits = habits.get_all_values()
     if all_habits:
