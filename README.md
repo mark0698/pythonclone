@@ -143,19 +143,19 @@
     <li>Main Menu</li>
    <img src="https://github.com/mark0698/Python-Project/blob/main/docs/screenshots/main.png" alt="Main Menu " width="600">
     <li>Add a New Habit</li>
-    ![Add Habit](docs/screenshots/add.PNG)
+    <img src="https://github.com/mark0698/Python-Project/blob/main/docs/screenshots/add.png" alt="add" width="600">
     <li>Track Successful/Unsuccessful Days</li>
-    ![Update habit](docs/screenshots/updatesuccess.PNG)
+   <img src="https://github.com/mark0698/Python-Project/blob/main/docs/screenshots/updatesuccess.png" alt="Update Success" width="600">
     <li>View All Habits</li>
-    ![View All](docs/screenshots/gethabit.PNG)
+   <img src="https://github.com/mark0698/Python-Project/blob/main/docs/screenshots/getahabit.png" alt="View All" width="600">
     <li>Delete a Habit</li>
-    ![Delete Habit](docs/screenshots/delete.PNG)
+  <img src="https://github.com/mark0698/Python-Project/blob/main/docs/screenshots/delete.png" alt="Delete Habit" width="600">
     <li>View Completion Percentage</li>
-    ![completion percentage](docs/screenshots/percentage.PNG)
+  <img src="https://github.com/mark0698/Python-Project/blob/main/docs/screenshots/percentage.png" alt="Percentage" width="600">
     <li>View Habit Progress</li>
-    ![level of success](docs/screenshots/successcalc.PNG)
+   <img src="https://github.com/mark0698/Python-Project/blob/main/docs/screenshots/successcalc.png" alt="Success Calculation" width="600">
     <li>Exit</li>
-    ![exit](docs/screenshots/exit.PNG)
+  <img src="https://github.com/mark0698/Python-Project/blob/main/docs/screenshots/exit.png" alt="Exit " width="600">
 </ol>
 
 <h2>Database Design</h2>
