@@ -147,7 +147,7 @@
     <li>Track Successful/Unsuccessful Days</li>
    <img src="https://github.com/mark0698/Python-Project/blob/main/docs/screenshots/updatesuccess.png" alt="Update Success" width="600">
     <li>View All Habits</li>
-   <img src="https://github.com/mark0698/Python-Project/blob/main/docs/screenshots/getahabit.png" alt="View All" width="600">
+   <img src="https://github.com/mark0698/Python-Project/blob/main/docs/screenshots/gethabit.png" alt="View All" width="600">
     <li>Delete a Habit</li>
   <img src="https://github.com/mark0698/Python-Project/blob/main/docs/screenshots/delete.png" alt="Delete Habit" width="600">
     <li>View Completion Percentage</li>
