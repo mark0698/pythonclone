@@ -141,13 +141,21 @@
 <h2>Logical Flow</h2>
 <ol>
     <li>Main Menu</li>
+    ![Main Menu](docs/screenshots/main.PNG)
     <li>Add a New Habit</li>
+    ![Add Habit](docs/screenshots/add.PNG)
     <li>Track Successful/Unsuccessful Days</li>
+    ![Update habit](docs/screenshots/updatesuccess.PNG)
     <li>View All Habits</li>
+    ![View All](docs/screenshots/gethabit.PNG)
     <li>Delete a Habit</li>
+    ![Delete Habit](docs/screenshots/delete.PNG)
     <li>View Completion Percentage</li>
+    ![completion percentage](docs/screenshots/percentage.PNG)
     <li>View Habit Progress</li>
+    ![level of success](docs/screenshots/successcalc.PNG)
     <li>Exit</li>
+    ![exit](docs/screenshots/exit.PNG)
 </ol>
 
 <h2>Database Design</h2>
