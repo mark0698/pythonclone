@@ -95,8 +95,8 @@ def delete_habit():
     habit_found = False
     
     for i, habit in enumerate(all_habits):
-        if habit[0].lower() == habit_name.lower():  # Case-insensitive comparison
-            habits.delete_rows(i + 1)  # Rows are 1-indexed in gspread
+        if habit[0].lower() == habit_name.lower():  
+            habits.delete_rows(i + 1)  
             print(f"{Fore.GREEN}Habit '{habit[0]}' deleted successfully!{Style.RESET_ALL}")
             habit_found = True
             break
@@ -110,7 +110,7 @@ def view_completion_percentages():
     
     habit_found = False
     for record in completion_records:
-        if record[0].lower() == habit_name.lower():  # Case-insensitive comparison
+        if record[0].lower() == habit_name.lower():  
             completion_percentage = record[1]
             print(f"{Fore.MAGENTA}Completion percentage for '{record[0]}': {completion_percentage}%{Style.RESET_ALL}")
             habit_found = True
@@ -168,11 +168,11 @@ def add_successful_day():
     
     for i, record in enumerate(completion_records):
         if record[0].lower() == habit_name.lower(): 
-            successful_days = int(record[2])  # Assuming C is column 3 (index 2)
-            unsuccessful_days = int(record[3])  # Assuming D is column 4 (index 3)
-            successful_days += 1  # Increment the successful days
+            successful_days = int(record[2])  
+            unsuccessful_days = int(record[3])  
+            successful_days += 1  
             
-            completion_data.update_cell(i + 1, 3, successful_days)  # Update success count
+            completion_data.update_cell(i + 1, 3, successful_days)  
             print(f"{Fore.GREEN}Added a successful day for '{habit_name}'. Total successful days: {successful_days}{Style.RESET_ALL}")
             return
 
@@ -184,11 +184,11 @@ def add_unsuccessful_day():
     
     for i, record in enumerate(completion_records):
         if record[0].lower() == habit_name.lower(): 
-            successful_days = int(record[2])  # Assuming C is column 3 (index 2)
-            unsuccessful_days = int(record[3])  # Assuming D is column 4 (index 3)
-            unsuccessful_days += 1  # Increment the unsuccessful days
+            successful_days = int(record[2])  
+            unsuccessful_days = int(record[3])  
+            unsuccessful_days += 1  
             
-            completion_data.update_cell(i + 1, 4, unsuccessful_days)  # Update unsuccessful count
+            completion_data.update_cell(i + 1, 4, unsuccessful_days) 
             print(f"{Fore.GREEN}Added an unsuccessful day for '{habit_name}'. Total unsuccessful days: {unsuccessful_days}{Style.RESET_ALL}")
             return
 
