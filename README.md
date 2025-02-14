@@ -207,6 +207,8 @@
     <li><strong>gspread Library Documentation</strong>: Used to implement Google Sheets functionality in Python.</li>
     <li><strong>colorama Library</strong>: Used to enhance the terminal interface with colored text.</li>
 </ul>
+  <li><strong>Mentor</strong>: Gareth was ectremely helpful throughout the process.</li>
+</ul>
 
 <h2>Conclusion</h2>
 <p>This Habit Tracker is a simple yet powerful tool for individuals looking to build and maintain good habits. With its intuitive interface and robust features, users can easily track their progress and stay motivated to achieve their goals. Future enhancements, such as habit streaks and graphical progress tracking, will make the application even more useful.</p>
