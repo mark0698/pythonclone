@@ -141,7 +141,7 @@
 <h2>Logical Flow</h2>
 <ol>
     <li>Main Menu</li>
-    ![Main Menu](https://github.com/mark0698/Python-Project/blob/main/docs/screenshots/main.png)
+   <img src="https://github.com/mark0698/Python-Project/blob/main/docs/screenshots/main.png" alt="Main Menu " width="600">
     <li>Add a New Habit</li>
     ![Add Habit](docs/screenshots/add.PNG)
     <li>Track Successful/Unsuccessful Days</li>
