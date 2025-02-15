@@ -20,7 +20,14 @@ habits = SHEET.worksheet('habits')
 completion_data = SHEET.worksheet('percentage of completion')
 start_dates = SHEET.worksheet('start dates')
 
+
 def get_habit_data():
+    """
+    Main function to display a menu and handle user input for habit tracking.
+
+    The user can choose to add a new habit, track successful/unsuccessful days,
+    view habits, delete a habit, view completion percentages, or exit the program.
+    """
     while True:
         print(f"{Fore.GREEN}Please Enter an option below{Style.RESET_ALL}")
         print(f"{Fore.YELLOW}1. Add a new habit{Style.RESET_ALL}")
@@ -55,6 +62,13 @@ def get_habit_data():
 
 
 def enter_new_habit():
+    """
+    Adds a new habit to the 'habits' worksheet, records its start date in the
+    'start dates' worksheet, and initializes tracking in the 'percentage of
+    completion' worksheet.
+
+    The user is prompted to enter the habit name and start date.
+    """
     new_habit = input("Enter the name of your new habit: ")
     new_habit_lower = new_habit.lower()
 
@@ -79,14 +93,19 @@ def enter_new_habit():
 
     # Add the start date to the 'start dates' worksheet
     start_dates.append_row([new_habit_lower, start_date.strftime('%d/%m/%Y')])
-    print(f"{Fore.GREEN}Start date '{start_date.strftime('%d/%m/%Y')}' for habit '{new_habit}' recorded successfully!{Style.RESET_ALL}")
+    print(f"{Fore.GREEN}Start date '{start_date.strftime('%d/%m/%Y')}' for "
+          f"habit '{new_habit}' recorded successfully!{Style.RESET_ALL}")
 
-    # Add the new habit to the 'percentage of completion' worksheet with initial values
-    completion_data.append_row([new_habit_lower, 0, 0, 0])  # [habit_name, completion_percentage, successful_days, unsuccessful_days]
-    print(f"{Fore.GREEN}Habit '{new_habit}' added to completion tracking with initial values.{Style.RESET_ALL}")
+    # Add the new habit to the 'percentage of completion' worksheet
+    completion_data.append_row([new_habit_lower, 0, 0, 0])  # [name, %, success, fail]
+    print(f"{Fore.GREEN}Habit '{new_habit}' added to completion tracking "
+          f"with initial values.{Style.RESET_ALL}")
 
 
 def view_all_habits():
+    """
+    Displays all habits currently recorded in the 'habits' worksheet.
+    """
     all_habits = habits.get_all_values()
     if all_habits:
         print(f"{Fore.BLUE}Your habits:{Style.RESET_ALL}")
@@ -97,6 +116,11 @@ def view_all_habits():
 
 
 def delete_habit():
+    """
+    Deletes a habit from the 'habits' worksheet based on user input.
+
+    The user is prompted to enter the name of the habit to delete.
+    """
     habit_name = input("Enter the name of the habit to delete: ")
     all_habits = habits.get_all_values()
     habit_found = False
@@ -113,6 +137,11 @@ def delete_habit():
 
 
 def view_completion_percentages():
+    """
+    Displays the completion percentage for a specific habit.
+
+    The user is prompted to enter the name of the habit to view its completion percentage.
+    """
     habit_name = input("Enter the name of the habit you want the completion percentage for: ")
     completion_records = completion_data.get_all_values()
 
@@ -120,7 +149,8 @@ def view_completion_percentages():
     for record in completion_records:
         if record[0].lower() == habit_name.lower():
             completion_percentage = record[1]
-            print(f"{Fore.MAGENTA}Completion percentage for '{record[0]}': {completion_percentage}%{Style.RESET_ALL}")
+            print(f"{Fore.MAGENTA}Completion percentage for '{record[0]}': "
+                  f"{completion_percentage}%{Style.RESET_ALL}")
             habit_found = True
             break
 
@@ -129,6 +159,12 @@ def view_completion_percentages():
 
 
 def view_habit_progress():
+    """
+    Displays the progress of a habit, including its start date, days since start,
+    and success percentage.
+
+    The user is prompted to enter the name of the habit to view its progress.
+    """
     habit_name = input("Enter the name of the habit you want to check progress for: ")
     habit_name_lower = habit_name.lower()
     start_dates_records = start_dates.get_all_values()
@@ -161,7 +197,8 @@ def view_habit_progress():
         current_date = datetime.now()
         days_since_start = (current_date - start_date).days
     except ValueError:
-        print(f"{Fore.RED}Invalid date format for habit '{habit_name}'. Expected format: DD/MM/YYYY.{Style.RESET_ALL}")
+        print(f"{Fore.RED}Invalid date format for habit '{habit_name}'. "
+              f"Expected format: DD/MM/YYYY.{Style.RESET_ALL}")
         return
 
     print(f"\n{Fore.CYAN}Habit: {habit_name}{Style.RESET_ALL}")
@@ -171,6 +208,12 @@ def view_habit_progress():
 
 
 def add_successful_day():
+    """
+    Increments the successful day count for a specific habit in the
+    'percentage of completion' worksheet.
+
+    The user is prompted to enter the name of the habit to add a successful day.
+    """
     habit_name = input("Enter the habit for which you want to add a successful day: ")
     completion_records = completion_data.get_all_values()
 
@@ -181,13 +224,20 @@ def add_successful_day():
             successful_days += 1
 
             completion_data.update_cell(i + 1, 3, successful_days)
-            print(f"{Fore.GREEN}Added a successful day for '{habit_name}'. Total successful days: {successful_days}{Style.RESET_ALL}")
+            print(f"{Fore.GREEN}Added a successful day for '{habit_name}'. "
+                  f"Total successful days: {successful_days}{Style.RESET_ALL}")
             return
 
     print(f"{Fore.RED}Habit '{habit_name}' not found in completion data.{Style.RESET_ALL}")
 
 
 def add_unsuccessful_day():
+    """
+    Increments the unsuccessful day count for a specific habit in the
+    'percentage of completion' worksheet.
+
+    The user is prompted to enter the name of the habit to add an unsuccessful day.
+    """
     habit_name = input("Enter the habit for which you want to add an unsuccessful day: ")
     completion_records = completion_data.get_all_values()
 
@@ -198,7 +248,8 @@ def add_unsuccessful_day():
             unsuccessful_days += 1
 
             completion_data.update_cell(i + 1, 4, unsuccessful_days)
-            print(f"{Fore.GREEN}Added an unsuccessful day for '{habit_name}'. Total unsuccessful days: {unsuccessful_days}{Style.RESET_ALL}")
+            print(f"{Fore.GREEN}Added an unsuccessful day for '{habit_name}'. "
+                  f"Total unsuccessful days: {unsuccessful_days}{Style.RESET_ALL}")
             return
 
     print(f"{Fore.RED}Habit '{habit_name}' not found in completion data.{Style.RESET_ALL}")
