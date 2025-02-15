@@ -20,7 +20,6 @@ habits = SHEET.worksheet('habits')
 completion_data = SHEET.worksheet('percentage of completion')
 start_dates = SHEET.worksheet('start dates')
 
-
 def get_habit_data():
     """
     Main function to display a menu and handle user input for habit tracking.
@@ -59,7 +58,6 @@ def get_habit_data():
             break
         else:
             print(f"{Fore.RED}Invalid choice. Please try again.{Style.RESET_ALL}")
-
 
 def enter_new_habit():
     """
@@ -101,7 +99,6 @@ def enter_new_habit():
     print(f"{Fore.GREEN}Habit '{new_habit}' added to completion tracking "
           f"with initial values.{Style.RESET_ALL}")
 
-
 def view_all_habits():
     """
     Displays all habits currently recorded in the 'habits' worksheet.
@@ -113,7 +110,6 @@ def view_all_habits():
             print(f"{Fore.CYAN}{habit[0]}{Style.RESET_ALL}")
     else:
         print(f"{Fore.RED}You have no habits recorded.{Style.RESET_ALL}")
-
 
 def delete_habit():
     """
@@ -135,7 +131,6 @@ def delete_habit():
     if not habit_found:
         print(f"{Fore.RED}Habit '{habit_name}' not found.{Style.RESET_ALL}")
 
-
 def view_completion_percentages():
     """
     Displays the completion percentage for a specific habit.
@@ -148,15 +143,22 @@ def view_completion_percentages():
     habit_found = False
     for record in completion_records:
         if record[0].lower() == habit_name.lower():
-            completion_percentage = record[1]
+            successful_days = int(record[2])
+            unsuccessful_days = int(record[3])
+            total_days = successful_days + unsuccessful_days
+
+            if total_days == 0:
+                completion_percentage = 0
+            else:
+                completion_percentage = (successful_days / total_days) * 100
+
             print(f"{Fore.MAGENTA}Completion percentage for '{record[0]}': "
-                  f"{completion_percentage}%{Style.RESET_ALL}")
+                  f"{completion_percentage:.2f}%{Style.RESET_ALL}")
             habit_found = True
             break
 
     if not habit_found:
         print(f"{Fore.RED}No completion data found for habit '{habit_name}'.{Style.RESET_ALL}")
-
 
 def view_habit_progress():
     """
@@ -185,10 +187,17 @@ def view_habit_progress():
 
     for record in completion_records:
         if record[0].lower() == habit_name_lower:
-            success_percentage = record[1]
+            successful_days = int(record[2])
+            unsuccessful_days = int(record[3])
+            total_days = successful_days + unsuccessful_days
+
+            if total_days == 0:
+                success_percentage = 0
+            else:
+                success_percentage = (successful_days / total_days) * 100
             break
 
-    if not success_percentage:
+    if success_percentage is None:
         print(f"{Fore.RED}No completion data found for habit '{habit_name}'.{Style.RESET_ALL}")
         return
 
@@ -204,8 +213,7 @@ def view_habit_progress():
     print(f"\n{Fore.CYAN}Habit: {habit_name}{Style.RESET_ALL}")
     print(f"{Fore.CYAN}Start Date: {start_date.strftime('%d/%m/%Y')}{Style.RESET_ALL}")
     print(f"{Fore.CYAN}Days since start: {days_since_start} days{Style.RESET_ALL}")
-    print(f"{Fore.CYAN}Success Percentage: {success_percentage}%{Style.RESET_ALL}\n")
-
+    print(f"{Fore.CYAN}Success Percentage: {success_percentage:.2f}%{Style.RESET_ALL}\n")
 
 def add_successful_day():
     """
@@ -230,7 +238,6 @@ def add_successful_day():
 
     print(f"{Fore.RED}Habit '{habit_name}' not found in completion data.{Style.RESET_ALL}")
 
-
 def add_unsuccessful_day():
     """
     Increments the unsuccessful day count for a specific habit in the
@@ -253,6 +260,5 @@ def add_unsuccessful_day():
             return
 
     print(f"{Fore.RED}Habit '{habit_name}' not found in completion data.{Style.RESET_ALL}")
-
 
 get_habit_data()
